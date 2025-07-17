@@ -5,4 +5,4 @@ O projeto visa disponibilizar em formatos diversos (csv, xlsx) dados de órgãos
 
 O grande propósito do projeto é facilitar o acesso de usuários Python em geral a dados públicos brasileiros permitindo criação de valor público com eles.
 
-A organização do repositório seguirá as melhores práticas de repositórios de pacotes que usam Poetry, uma ferramenta Pyhton que facilita a criação de pacotes.
+A organização do repositório seguirá as melhores práticas de repositórios de pacotes que usam Poetry, uma ferramenta Pyhton que facilita a criação de pacotes. Já existe uma estrutura pré-montada mas as funções serão desenvolvidas especificamente para cada fonte de dados.
