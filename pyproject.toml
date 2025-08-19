@@ -1,0 +1,23 @@
+[project]
+name = "brdatapy"
+version = "0.1.0"
+description = "Pacote Python para facilitar o acesso a dados públicos de origens e fontes diversas usando centralização."
+authors = [
+    {name = "Wesley Araujo",email = "lima.wesleyaraujo@gmail.com"}
+]
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "requests (>=2.32.4,<3.0.0)",
+    "pandas (>=2.3.1,<3.0.0)",
+    "numpy (>=2.3.1,<3.0.0)",
+    "pyyaml (>=6.0.2,<7.0.0)"
+]
+
+[tool.poetry]
+packages = [{include = "brdatapy", from = "src"}]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
