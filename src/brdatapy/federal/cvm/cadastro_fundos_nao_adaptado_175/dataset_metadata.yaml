@@ -1,6 +1,7 @@
 forma_obtencao_dataset: download_link
 link_dataset: https://dados.cvm.gov.br/dados/FI/CAD/DADOS/cad_fi.csv
 formato_dataset: csv
+nome_arquivo_dataset: cad_fi
 link_dicionario_dados:
 descricao_dataset: Dados Cadastrais de Fundos de Investimento não adaptados à normativa RCVM175, ou seja, sem estrutura de fundo, classe e subclasse.
 tags_dataset: ["federal", "cvm", "mercado financeiro", "fundos de investimento", "mensal"]

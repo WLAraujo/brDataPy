@@ -12,4 +12,4 @@ class CadastroFundosNaoAdaptado175(DatasetFactory):
 
 ds = CadastroFundosNaoAdaptado175()
 print(ds.metadados_dataset)
-
+ds.estrategia_formato.baixar_dataset_csv()

@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+from io import StringIO
 
 class AcquisitonStrategy(ABC):
     """Classe abstrata usada para definir a interface comum que as estratégias concretas de obtenção de dados devem seguir.
@@ -7,7 +8,7 @@ class AcquisitonStrategy(ABC):
     """
 
     def __init__(self, metadados_dataset:dict):
-        """Método inicializador da estratégia de aquisição do dataset que cria atributo com metadados do dataset.
+        """Método inicializador da estratégia de aquisição do dataset que cria um atributo dicionário com metadados do dataset.
 
         Args:
             metadados_dataset (dict): Dicionário com todos os metadados do dataset que estão contidos no yaml de configuração.
@@ -17,14 +18,15 @@ class AcquisitonStrategy(ABC):
     @property
     @abstractmethod
     def metadados_obrigatorios(self)->set:
-        """Propriedade que obrigatóriamente deve existir em cada classe concreta que implementa uma estratégia concreta de obtenção de dados.
+        """Propriedade que obrigatóriamente deve existir em cada classe concreta e que implementa uma estratégia concreta de obtenção de dados.
         Deve retornar 
         """
         pass
 
     @abstractmethod
-    def obter_dados(self):
+    def obter_dados(self)->StringIO:
         """Método abstrato usado para obter os dados de um dataset. Cada estratégia de obtenção dos dados deve aplicar uma forma específica para obtenção.
+        Por padrão as estratégias concretas devem retornar os dados como um StringIO para viabilizar o tratamento do dataset em memória.
         """
         pass
 

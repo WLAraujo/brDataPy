@@ -2,7 +2,10 @@ from brdatapy.interface.AcquisitonStrategy import AcquisitonStrategy
 import requests
 from io import StringIO
 
-class AcquisitonStrategyLinkDownload(AcquisitonStrategy):
+class AcquisitonStrategyDownloadLink(AcquisitonStrategy):
+    """Classe concreta que implementa a estratégia de obtenção de dados quando a forma de obtenção definida no arquivo de metadados for "download_link".
+    Essa estratégia concreta obtem os dados do link e armazena o conteúdo obtido em um StringIO para armazenamento em memória.
+    """
 
     @property
     def metadados_obrigatorios(self)->set:
@@ -30,10 +33,13 @@ class AcquisitonStrategyLinkDownload(AcquisitonStrategy):
         Returns:
             StringIO: Arquivo obtido via download por link direto no formato de StringIO.
         """
-        response = requests.get(self.url_link_download)
-        response.raise_for_status()
-        data = StringIO(response.text)
-        return data
+        request_dataset = requests.get(self.url_link_download)
+        try:
+            request_dataset.raise_for_status()
+        except requests.exceptions.RequestException as e:
+            raise Exception(f"Falha em obter dados via link passado no arquivo de metadados, favor comunicar a equipe de desenvolvimento para atualizar o link.\nLink: self.url_link_download\nErro: {str(e)}")
+        conteudo_dataset = StringIO(request_dataset.text)
+        return conteudo_dataset
 
     def _validar_metadados(self)->bool:
         """Método privado que valida se o arquivo yaml de metadados do dataset contém todos os metadados necessários para o tipo específico de estratégia de obtenção de dados.

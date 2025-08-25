@@ -2,9 +2,9 @@ from abc import ABC, abstractmethod
 from pathlib import Path
 import inspect
 import yaml
-from brdatapy.interface.AcquisitonStrategy import AcquisitonStrategy
-from brdatapy.interface.FormatStrategy import FormatStrategy
-from brdatapy.interface.AcquisitonStrategyLinkDownload import AcquisitonStrategyLinkDownload
+from io import StringIO
+from brdatapy.interface.AcquisitonStrategyDownloadLink import AcquisitonStrategyDownloadLink
+from brdatapy.interface.FormatStrategyCsv import FormatStrategyCsv
 
 class DatasetFactory(ABC):
     """Classe abstrata que define a interface que as classes que implementam datasets devem implementar e estabelece métodos comuns para todas as classes concretas que de fato implementam os datasets.
@@ -15,10 +15,8 @@ class DatasetFactory(ABC):
         Esse método define dois dos pontos mais importantes para todo dataset: como o dataset será obtido e como ele será tratado devido ao seu formato.
         Também são feitas validações dos metadados.
         """
-        metadados_obrigatorios = {"formato_dataset", "forma_obtencao_dataset", "descricao_dataset", "tags_dataset"}
-        if not metadados_obrigatorios.issubset(self.metadados_dataset.keys()):
-            raise Exception(f"Um dos metadados obrigatórios para todo dataset não foi encontrado no arquivo yaml de metadados. Favor entrar em contato com o time de desenvolvimento.")
         self.estrategia_forma_obtencao = self._definir_estrategia_obtencao()
+        self._conteudo_dataset = self.estrategia_forma_obtencao.obter_dados()
         self.estrategia_formato = self._definir_estrategia_formato()
         self._validar_metadados_dataset()
 
@@ -93,6 +91,17 @@ class DatasetFactory(ABC):
             str: Formato do dataset obtido do arquivo de metadados.
         """
         return self.metadados_dataset["formato_dataset"]
+    
+    @property
+    def conteudo_dataset(self)->StringIO:
+        """Método que retorna o conteúdo do dataset no formato StringIO. 
+        O método retorna o conteúdo do dataset em memória.
+        Esse atributo é inicializado sempre junto com criação do objeto mas em uma variável privada, esse método apenas expõe o conteúdo da variável.
+
+        Returns:
+            StringIO: Conteúdo do dataset em memória no formato StringIO
+        """
+        return self._conteudo_dataset
 
     @abstractmethod
     def obter_schema(self):
@@ -104,7 +113,7 @@ class DatasetFactory(ABC):
         """Método abstrato usado para decidir qual será a estrátegia de obtenção do datasets.
         """
         if self.forma_obtencao_dataset == "download_link":
-            return AcquisitonStrategyLinkDownload(self.metadados_dataset)
+            return AcquisitonStrategyDownloadLink(self.metadados_dataset)
         else:
             raise Exception(f"Forma de obtenção {self.forma_obtencao} não existe, se deseja sugerir uma nova forma de obtenção de datasets entre em contato com a equipe de desenvolvimento.")
 
@@ -112,14 +121,13 @@ class DatasetFactory(ABC):
         """Método abstrato usado para decidir qual será a estrátegia para tratar o formato de dataset.
         """
         if self.formato_dataset == "csv":
-            pass
+            return FormatStrategyCsv(self.metadados_dataset, self.conteudo_dataset)
         else:
-            raise Exception(f"Forma de obtenção {self.formato_dataset} não existe, se deseja sugerir uma nova forma de obtenção de datasets entre em contato com a equipe de desenvolvimento.")
+            raise Exception(f"Formato de dataset {self.formato_dataset} não existe, se deseja sugerir um novo formato possível para datasets entre em contato com a equipe de desenvolvimento.")
 
     def _validar_metadados_dataset(self):
         """Método privado em que cada classe de factory específica deve implementar uma forma de validar os metadados do dataset para o tipo específico formato ou forma de obtenção.
         Caso os metadados do dataset não sejam coerentes com a forma de obtenção 
         """
-        pass
-        #if (not self.estrategia_forma_obtencao._validar_metadados()) or (self.estrategia_formato._validar_metadados()):
-        #    raise Exception("Metadados contidos no arquivo são inválidos para o formato do dataset ou o tipo de obtenção. Favor entrar em contato com time de desenvolvimento para corrigir problemas no arquivo de metadados.")
+        if (not self.estrategia_forma_obtencao._validar_metadados()) or (not self.estrategia_formato._validar_metadados()):
+            raise Exception("Metadados contidos no arquivo são inválidos para o formato do dataset ou o tipo de obtenção. Favor entrar em contato com time de desenvolvimento para corrigir problemas no arquivo de metadados.")
