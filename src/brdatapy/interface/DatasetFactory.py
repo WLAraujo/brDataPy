@@ -103,12 +103,6 @@ class DatasetFactory(ABC):
         """
         return self._conteudo_dataset
 
-    @abstractmethod
-    def obter_schema(self):
-        """Método abstrato em que cada classe de factory específica deve implementar uma forma de obter o schema do dataset considerando os metadados do dataset obtidos.
-        """
-        pass
-
     def _definir_estrategia_obtencao(self):
         """Método abstrato usado para decidir qual será a estrátegia de obtenção do datasets.
         """
