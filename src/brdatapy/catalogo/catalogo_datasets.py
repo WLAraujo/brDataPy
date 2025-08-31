@@ -1,4 +1,4 @@
-
+from pathlib import Path
 
 class CatalogoMetadados():
     """Classe de dados responsável pelo busca de informações dentro do pacote.
@@ -7,6 +7,11 @@ class CatalogoMetadados():
     Podem ser realizadas buscas pela descrição dos dataset, instituições e tags.
     A classe também oferece métodos para dar uma visão ampla 
     """
+
+    def _diretorios_com_datasets():
+        base_path = Path(diretorio_base)
+        diretorios = {arquivo.parent for arquivo in base_path.rglob("metadata.yml")}
+        return diretorios
 
     def mostrar_tags():
         pass

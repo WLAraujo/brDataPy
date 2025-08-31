@@ -5,7 +5,7 @@ import zipfile
 from io import BytesIO
 from io import StringIO
 import pandas as pd
-import os
+from pathlib import Path
 
 class FormatStrategyZipCsv(FormatStrategy):
     """Classe concreta que implementa a estratégia com utilitários quando o formato do dataset que foi definido no arquivo de metadados for "zip_csv".
@@ -54,7 +54,7 @@ class FormatStrategyZipCsv(FormatStrategy):
         """
         with zipfile.ZipFile(self.conteudo_dataset) as zf:
             try:
-                assert arquivo_no_zip in [os.path.splitext(nome_arquivo)[0] for nome_arquivo in zf.namelist() if nome_arquivo.endswith(".csv")]
+                assert arquivo_no_zip in [Path(nome_arquivo).stem for nome_arquivo in zf.namelist() if nome_arquivo.endswith(".csv")]
             except:
                 raise Exception("Arquivo com nome passado como parâmetro do método não está contido no zip, favor reveja o nome usado na chamada do método.\nA extensão não deve ser usada no parâmetro.")
 
