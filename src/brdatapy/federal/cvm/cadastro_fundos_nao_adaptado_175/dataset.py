@@ -1,4 +1,4 @@
-from brdatapy.interface.DatasetFactory import DatasetFactory
+from brdatapy.dataset_factory.DatasetFactory import DatasetFactory
 import requests
 import yaml
 import pandas as pd

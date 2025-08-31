@@ -1,4 +1,4 @@
-from brdatapy.interface.FormatStrategy import FormatStrategy
+from brdatapy.format_strategies.FormatStrategy import FormatStrategy
 import requests
 import csv
 from io import StringIO

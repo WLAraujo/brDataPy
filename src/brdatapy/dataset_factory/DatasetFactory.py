@@ -2,9 +2,10 @@ from abc import ABC, abstractmethod
 from pathlib import Path
 import inspect
 import yaml
-from io import StringIO
-from brdatapy.interface.AcquisitonStrategyDownloadLink import AcquisitonStrategyDownloadLink
-from brdatapy.interface.FormatStrategyCsv import FormatStrategyCsv
+from io import BytesIO
+from brdatapy.acquistion_strategies.AcquisitonStrategyDownloadLink import AcquisitonStrategyDownloadLink
+from brdatapy.format_strategies.FormatStrategyCsv import FormatStrategyCsv
+from brdatapy.format_strategies.FormatStrategyZipCsv import FormatStrategyZipCsv
 
 class DatasetFactory(ABC):
     """Classe abstrata que define a interface que as classes que implementam datasets devem implementar e estabelece métodos comuns para todas as classes concretas que de fato implementam os datasets.
@@ -93,13 +94,13 @@ class DatasetFactory(ABC):
         return self.metadados_dataset["formato_dataset"]
     
     @property
-    def conteudo_dataset(self)->StringIO:
-        """Método que retorna o conteúdo do dataset no formato StringIO. 
+    def conteudo_dataset(self)->BytesIO:
+        """Método que retorna o conteúdo do dataset no formato BytesIO. 
         O método retorna o conteúdo do dataset em memória.
         Esse atributo é inicializado sempre junto com criação do objeto mas em uma variável privada, esse método apenas expõe o conteúdo da variável.
 
         Returns:
-            StringIO: Conteúdo do dataset em memória no formato StringIO
+            BytesIO: Conteúdo do dataset em memória no formato BytesIO
         """
         return self._conteudo_dataset
 
@@ -116,6 +117,8 @@ class DatasetFactory(ABC):
         """
         if self.formato_dataset == "csv":
             return FormatStrategyCsv(self.metadados_dataset, self.conteudo_dataset)
+        elif self.formato_dataset == "zip_csv":
+            return FormatStrategyZipCsv(self.metadados_dataset, self.conteudo_dataset)
         else:
             raise Exception(f"Formato de dataset {self.formato_dataset} não existe, se deseja sugerir um novo formato possível para datasets entre em contato com a equipe de desenvolvimento.")
 

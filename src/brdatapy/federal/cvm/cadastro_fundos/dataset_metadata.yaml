@@ -1,0 +1,16 @@
+forma_obtencao_dataset: download_link
+link_dataset: https://dados.cvm.gov.br/dados/FI/CAD/DADOS/registro_fundo_classe.zip
+formato_dataset: zip_csv
+caractere_separacao: ;
+nome_arquivo_dataset:
+  - registro_classe
+  - registro_fundo
+  - registro_subclasse
+link_dicionario_dados:
+nome_dataset: Dados Cadastrais de Fundos de Investimento
+descricao_dataset: | 
+                      Dados Cadastrais de Fundos de Investimento organizados em três datasets: 
+                      - Um para os fundos cadastrados no Sistema de Gestão de Fundos da CVM, sejam eles adaptados à ICVM 175 ou não
+                      - Um para as informações de classes de cotas dos fundos adaptados à ICVM 175
+                      - Um para as informações de subclasses de cotas dos fundos adaptados à ICVM 175"
+tags_dataset: ["federal", "cvm", "mercado financeiro", "fundos de investimento", "mensal"]

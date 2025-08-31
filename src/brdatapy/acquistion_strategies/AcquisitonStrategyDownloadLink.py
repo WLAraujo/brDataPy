@@ -1,10 +1,10 @@
-from brdatapy.interface.AcquisitonStrategy import AcquisitonStrategy
+from brdatapy.acquistion_strategies.AcquisitonStrategy import AcquisitonStrategy
 import requests
-from io import StringIO
+from io import BytesIO
 
 class AcquisitonStrategyDownloadLink(AcquisitonStrategy):
     """Classe concreta que implementa a estratégia de obtenção de dados quando a forma de obtenção definida no arquivo de metadados for "download_link".
-    Essa estratégia concreta obtem os dados do link e armazena o conteúdo obtido em um StringIO para armazenamento em memória.
+    Essa estratégia concreta obtem os dados do link e armazena o conteúdo obtido em um BytesIO para armazenamento em memória.
     """
 
     @property
@@ -26,19 +26,19 @@ class AcquisitonStrategyDownloadLink(AcquisitonStrategy):
         """
         return self.metadados_dataset["link_dataset"]
 
-    def obter_dados(self)->StringIO:
+    def obter_dados(self)->BytesIO:
         """Método para obtenção do dataset via download pelo link contido nos metadados do datset.
-        O método retorna um StringIO visando com que os dados sejam tratados em memória.
+        O método retorna um BytesIO visando com que os dados sejam tratados em memória.
         
         Returns:
-            StringIO: Arquivo obtido via download por link direto no formato de StringIO.
+            BytesIO: Arquivo obtido via download por link direto no formato de BytesIO.
         """
         request_dataset = requests.get(self.url_link_download)
         try:
             request_dataset.raise_for_status()
         except requests.exceptions.RequestException as e:
             raise Exception(f"Falha em obter dados via link passado no arquivo de metadados, favor comunicar a equipe de desenvolvimento para atualizar o link.\nLink: self.url_link_download\nErro: {str(e)}")
-        conteudo_dataset = StringIO(request_dataset.text)
+        conteudo_dataset = BytesIO(request_dataset.content)
         return conteudo_dataset
 
     def _validar_metadados(self)->bool:
