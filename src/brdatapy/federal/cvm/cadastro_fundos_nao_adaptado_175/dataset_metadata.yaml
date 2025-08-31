@@ -5,5 +5,5 @@ caractere_separacao: ;
 nome_arquivo_dataset: cad_fi
 link_dicionario_dados:
 nome_dataset: Dados Cadastrais de Fundos de Investimento Não Adaptados à ICVM 175
-descricao_dataset: Dados Cadastrais de Fundos de Investimento não adaptados à normativa RCVM175.
+descricao_dataset: Dados Cadastrais de Fundos de Investimento não adaptados à normativa RCVM175. Cada registro da tabela tem as informações cadastrais de um fundo ainda não adaptado à ICVM 175.
 tags_dataset: ["federal", "cvm", "mercado financeiro", "fundos de investimento", "mensal"]

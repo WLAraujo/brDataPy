@@ -4,8 +4,10 @@ import inspect
 import yaml
 from io import BytesIO
 from brdatapy.acquistion_strategies.AcquisitonStrategyDownloadLink import AcquisitonStrategyDownloadLink
+from brdatapy.acquistion_strategies.AcquisitonStrategyApiCall import AcquisitonStrategyApiCall
 from brdatapy.format_strategies.FormatStrategyCsv import FormatStrategyCsv
 from brdatapy.format_strategies.FormatStrategyZipCsv import FormatStrategyZipCsv
+from brdatapy.format_strategies.FormatStrategyXlsx import FormatStrategyXlsx
 
 class DatasetFactory(ABC):
     """Classe abstrata que define a interface que as classes que implementam datasets devem implementar e estabelece métodos comuns para todas as classes concretas que de fato implementam os datasets.
@@ -109,6 +111,12 @@ class DatasetFactory(ABC):
         """
         if self.forma_obtencao_dataset == "download_link":
             return AcquisitonStrategyDownloadLink(self.metadados_dataset)
+        if self.forma_obtencao_dataset == "api_call":
+            try:
+                self.parametros_query_api
+            except NameError:
+                self.parametros_query_api = {}
+            return AcquisitonStrategyApiCall(self.metadados_dataset, self.parametros_query_api)
         else:
             raise Exception(f"Forma de obtenção {self.forma_obtencao} não existe, se deseja sugerir uma nova forma de obtenção de datasets entre em contato com a equipe de desenvolvimento.")
 
@@ -119,6 +127,8 @@ class DatasetFactory(ABC):
             return FormatStrategyCsv(self.metadados_dataset, self.conteudo_dataset)
         elif self.formato_dataset == "zip_csv":
             return FormatStrategyZipCsv(self.metadados_dataset, self.conteudo_dataset)
+        elif self.formato_dataset == "xlsx":
+            return FormatStrategyXlsx(self.metadados_dataset, self.conteudo_dataset)
         else:
             raise Exception(f"Formato de dataset {self.formato_dataset} não existe, se deseja sugerir um novo formato possível para datasets entre em contato com a equipe de desenvolvimento.")
 

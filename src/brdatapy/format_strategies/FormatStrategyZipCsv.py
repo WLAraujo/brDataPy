@@ -11,6 +11,7 @@ class FormatStrategyZipCsv(FormatStrategy):
     """Classe concreta que implementa a estratégia com utilitários quando o formato do dataset que foi definido no arquivo de metadados for "zip_csv".
     Esse formato indica que o conteúdo do dataset está dentro de um ou mais arquivos "csv" compactados dentro de um único arquivo "zip".
     Essa estratégia concreta contém utilitários para tratar o dataset de acordo com seu formato, como baixar arquivo csv, obter dataframe pandas do dataset, obter schema do dataset.
+    Por "csv" se tratar de um formato de text conversões para string geralmente são necessárias.
     """
 
     def __init__(self, metadados_dataset:dict, conteudo_dataset:StringIO):

@@ -8,6 +8,7 @@ import pandas as pd
 class FormatStrategyCsv(FormatStrategy):
     """Classe concreta que implementa a estratégia com utilitários quando o formato do dataset que foi definido no arquivo de metadados for "csv".
     Essa estratégia concreta contém utilitários para tratar o dataset de acordo com seu formato, como baixar arquivo csv, obter dataframe pandas do dataset, obter schema do dataset.
+    Por "csv" se tratar de um formato de text conversões para string geralmente são necessárias.
     """
 
     @property

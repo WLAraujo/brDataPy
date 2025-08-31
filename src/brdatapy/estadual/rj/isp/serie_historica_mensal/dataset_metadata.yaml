@@ -5,5 +5,5 @@ caractere_separacao: ;
 nome_arquivo_dataset: DOMensalEstadoDesde1991
 link_dicionario_dados:
 nome_dataset: Dados de Ocorrências Mensais de Cada Tipo de Crime no Rio de Janeiro desde 1991
-descricao_dataset: Série histórica mensal de ocorrências criminais do Estado do Rio de Janeiro desde 1991. A tabela tem dados mensais para vários tipos de délitos desde o ano de 1991. Cada coluna representa um tipo de délito.
+descricao_dataset: Série histórica mensal de ocorrências criminais do Estado do Rio de Janeiro desde 1991. A tabela tem dados mensais para vários tipos de délitos desde o ano de 1991. Cada coluna representa um tipo de délito e cada linha representa um mês dentro de um ano específico.
 tags_dataset: ["estadual", "rj", "seguranca publica", "isp", "crimes"]

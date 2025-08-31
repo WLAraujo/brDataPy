@@ -14,7 +14,7 @@ class AcquisitonStrategyDownloadLink(AcquisitonStrategy):
         Returns:
             set: Conjunto de nomes dos metadados obrigatórios para o tipo de obtenção do dataset.
         """
-        return {"formato_dataset", "forma_obtencao_dataset", "descricao_dataset", "tags_dataset"}
+        return {"formato_dataset", "forma_obtencao_dataset", "descricao_dataset", "tags_dataset", "link_dataset"}
     
     @property
     def url_link_download(self)->str:

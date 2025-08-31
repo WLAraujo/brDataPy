@@ -1,0 +1,9 @@
+forma_obtencao_dataset: api_call
+url_base: https://www.ssp.sp.gov.br
+endpoint_requisitado: /v1/OcorrenciasMensais/ExportarMensal
+formato_dataset: xlsx
+nome_arquivo_dataset: OcorrenciaMensal(Policial)
+link_dicionario_dados:
+nome_dataset: Dados de Ocorrências de Produtividade Policial por Ano no Estado de São Paulo
+descricao_dataset: Dados anuais de ocorrências policiais do Estado de São Paulo, informações divididas por cada mês. A tabela tem dados mensais do ano solicitado para vários tipos de ações policiais. Cada coluna representa um mês e cada linha representa um tipo de ação.
+tags_dataset: ["estadual", "sp", "seguranca publica", "ssp", "acoes policiais", "ocorrencias policiais"]

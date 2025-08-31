@@ -12,5 +12,5 @@ descricao_dataset: |
                       Dados Cadastrais de Fundos de Investimento organizados em três datasets: 
                       - Um para os fundos cadastrados no Sistema de Gestão de Fundos da CVM, sejam eles adaptados à ICVM 175 ou não
                       - Um para as informações de classes de cotas dos fundos adaptados à ICVM 175
-                      - Um para as informações de subclasses de cotas dos fundos adaptados à ICVM 175"
+                      - Um para as informações de subclasses de cotas dos fundos adaptados à ICVM 175
 tags_dataset: ["federal", "cvm", "mercado financeiro", "fundos de investimento", "mensal"]
