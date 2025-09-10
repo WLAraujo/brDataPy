@@ -1,10 +1,10 @@
-from brdatapy.dataset_factory.DatasetFactory import DatasetFactory
+from brdatapy.dataset_template.DatasetTemplate import DatasetTemplate
 import pandas as pd
 import requests
 import yaml
 import datetime
 
-class OcorrenciasCriminaisMensal(DatasetFactory):
+class OcorrenciasCriminaisMensal(DatasetTemplate):
 
     def __init__(self, ano:str="0", escopo:str="estado", regiao:str="0"):
         """Método inicializador da classe do dataset Ocorrencias Criminais Mensal do Estado de São Paulo.

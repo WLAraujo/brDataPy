@@ -1,16 +1,16 @@
-from brdatapy.dataset_factory.DatasetFactory import DatasetFactory
+from brdatapy.dataset_template.DatasetTemplate import DatasetTemplate
 import requests
 import yaml
 import pandas as pd
 
-class SerieHistoricaMensalCrimes(DatasetFactory):
+class SerieHistoricaMensalCrimes(DatasetTemplate):
     """Classe de dados usada para recuperar os dados da Série Histórica Mensal de Crimes no Estado do RJ desde 1991.
     A instituição responsável por esses dados é o ISP (Instituto de Segurança Pública).
     A classe deve ser usada como interface para obter os dados desse dataset em diversos formatos, como csv, xlsx, json, pandas ou dicionário.
     A classe também pode conter métodos úteis para o seu contexto.
 
     Args:
-        DatasetFactory: Classe abstrata qual todos os datasets implementados em classes concretas devem herdar.
+        DatasetTemplate: Classe abstrata qual todos os datasets implementados em classes concretas devem herdar.
     """
 
     def obter_metadados_dataset(self)->dict:

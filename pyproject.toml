@@ -1,7 +1,7 @@
 [project]
 name = "brdatapy"
 version = "0.1.0"
-description = "Pacote Python para facilitar o acesso a dados públicos de origens e fontes diversas usando centralização."
+description = "Pacote Python para facilitar o acesso a dados públicos do Brasil de origens e fontes diversas usando conceitos de governança e catalogação de dados e metadados."
 authors = [
     {name = "Wesley Araujo",email = "lima.wesleyaraujo@gmail.com"}
 ]
@@ -13,7 +13,8 @@ dependencies = [
     "numpy (>=2.3.1,<3.0.0)",
     "pyyaml (>=6.0.2,<7.0.0)",
     "openpyxl (>=3.1.5,<4.0.0)",
-    "pytest (>=8.4.1,<9.0.0)"
+    "pytest (>=8.4.1,<9.0.0)",
+    "pysonar (>=1.1.0.2035,<2.0.0.0)"
 ]
 
 [tool.poetry]

@@ -9,7 +9,7 @@ from brdatapy.format_strategies.FormatStrategyCsv import FormatStrategyCsv
 from brdatapy.format_strategies.FormatStrategyZipCsv import FormatStrategyZipCsv
 from brdatapy.format_strategies.FormatStrategyXlsx import FormatStrategyXlsx
 
-class DatasetFactory(ABC):
+class DatasetTemplate(ABC):
     """Classe abstrata que define a interface que as classes que implementam datasets devem implementar e estabelece métodos comuns para todas as classes concretas que de fato implementam os datasets.
     """
 

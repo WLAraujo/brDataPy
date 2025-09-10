@@ -1,9 +1,9 @@
-from brdatapy.dataset_factory.DatasetFactory import DatasetFactory
+from brdatapy.dataset_template.DatasetTemplate import DatasetTemplate
 import requests
 import yaml
 import pandas as pd
 
-class CadastroFundosNaoAdaptado175(DatasetFactory):
+class CadastroFundosNaoAdaptado175(DatasetTemplate):
     """Classe de dados usada para recuperar os dados Cadastrais de Fundos Não Adaptados à ICVM 175.
     A instituição responsável por esses dados é a CVM (Comissão de Valores Mobiliários).
     Para saber mais sobre a ICVM 175, que altera a estrutura de fundos de investimento, acesse https://conteudo.cvm.gov.br/legislacao/resolucoes/resol175.html.
@@ -11,7 +11,7 @@ class CadastroFundosNaoAdaptado175(DatasetFactory):
     A classe também pode conter métodos úteis para o seu contexto.
 
     Args:
-        DatasetFactory: Classe abstrata qual todos os datasets implementados em classes concretas devem herdar.
+        DatasetTemplate: Classe abstrata qual todos os datasets implementados em classes concretas devem herdar.
     """
 
     def obter_metadados_dataset(self)->dict:
